@@ -3,67 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Te quiero</title>
+    <title>Para mi Novia</title>
     <style>
         body {
-            background-color: #ffdde1;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            height: 100vh;
+            background-color: #ffebee;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
         }
+
+        .heart-container {
+            position: relative;
+            text-align: center;
+        }
+
         .heart {
-            font-size: 100px;
-            color: red;
-            animation: heartbeat 1s infinite;
+            width: 100px;
+            height: 90px;
+            background-color: red;
+            position: relative;
+            transform: rotate(-45deg);
+            animation: beat 1s infinite;
             cursor: pointer;
-            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
         }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 100px;
+            height: 90px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
         }
+
+        .heart::before {
+            top: -45px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 45px;
+        }
+
         .arrow {
-            font-size: 30px;
-            color: #ff4b5c;
-            animation: bounce 1s infinite;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: red;
+            transition: opacity 0.3s ease;
         }
-        @keyframes bounce {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-            100% { transform: translateY(0); }
-        }
-        .button {
-            background-color: #ff4b5c;
+
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
+            z-index: 1;
         }
-        .button:hover {
-            background-color: #ff1c2b;
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes beat {
+            0%, 100% {
+                transform: rotate(-45deg) scale(1);
+            }
+            50% {
+                transform: rotate(-45deg) scale(1.1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
         }
     </style>
-    <script>
-        function showMessage() {
-            alert('Te quiero lamber tu cola ❤️');
-        }
-    </script>
 </head>
 <body>
-    <div>
-        <div class="heart">❤️</div>
+    <div class="heart-container">
         <div class="arrow">↓</div>
-        <button class="button" onclick="showMessage()">Presióname</button>
+        <div class="heart" onclick="showMessage()">
+            <div class="message" id="pressMe">Presióname</div>
+            <div class="message hidden" id="loveMessage">Te quiero lamber tu cola</div>
+        </div>
     </div>
+
+    <script>
+        function showMessage() {
+            const heart = document.querySelector('.heart');
+            const arrow = document.querySelector('.arrow');
+            const pressMe = document.getElementById('pressMe');
+            const loveMessage = document.getElementById('loveMessage');
+
+            // Cambiar el color del corazón
+            heart.style.backgroundColor = '#ff6b6b';
+
+            // Ocultar la flecha
+            arrow.style.opacity = '0';
+
+            // Ocultar "Presióname" y mostrar "Te quiero lamber tu cola"
+            pressMe.classList.add('hidden');
+            loveMessage.classList.remove('hidden');
+            loveMessage.classList.add('fade-in');
+        }
+    </script>
 </body>
 </html>
-
