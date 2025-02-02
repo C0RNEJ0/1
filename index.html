@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te quiero</title>
+    <style>
+        body {
+            background-color: #ffdde1;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .heart {
+            font-size: 100px;
+            color: red;
+            animation: heartbeat 1s infinite;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .arrow {
+            font-size: 30px;
+            color: #ff4b5c;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+            100% { transform: translateY(0); }
+        }
+        .button {
+            background-color: #ff4b5c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #ff1c2b;
+        }
+    </style>
+    <script>
+        function showMessage() {
+            alert('Te quiero lamber tu cola ❤️');
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div class="heart">❤️</div>
+        <div class="arrow">↓</div>
+        <button class="button" onclick="showMessage()">Presióname</button>
+    </div>
+</body>
+</html>
 
