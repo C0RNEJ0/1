@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi Novia</title>
     <style>
-        /* Estilos generales */
         body {
             display: flex;
             justify-content: center;
@@ -16,13 +15,11 @@
             font-family: 'Arial', sans-serif;
         }
 
-        /* Contenedor del corazón */
         .heart-container {
             position: relative;
             text-align: center;
         }
 
-        /* Corazón */
         .heart {
             width: 100px;
             height: 90px;
@@ -31,7 +28,6 @@
             transform: rotate(-45deg);
             animation: beat 1s infinite;
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
         .heart::before,
@@ -54,32 +50,15 @@
             left: 45px;
         }
 
-        /* Flecha que atraviesa el corazón */
         .arrow {
             position: absolute;
-            top: 50%;
+            top: -50px;
             left: 50%;
-            width: 120px;
-            height: 2px;
-            background-color: white;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            transform-origin: center;
-            z-index: 1;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: red;
         }
 
-        .arrow::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            right: 0;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 5px 0 5px 10px;
-            border-color: transparent transparent transparent white;
-        }
-
-        /* Mensajes */
         .message {
             position: absolute;
             top: 50%;
@@ -87,33 +66,13 @@
             transform: translate(-50%, -50%);
             font-size: 20px;
             color: white;
-            z-index: 2;
-            opacity: 0;
-            transition: opacity 0.5s ease;
+            z-index: 1;
         }
 
-        /* Efecto de clic */
-        #heart-checkbox {
+        .hidden {
             display: none;
         }
 
-        #heart-checkbox:checked ~ .heart {
-            background-color: #ff6b6b;
-        }
-
-        #heart-checkbox:checked ~ .arrow {
-            opacity: 0;
-        }
-
-        #heart-checkbox:checked ~ .heart .press-me {
-            opacity: 0;
-        }
-
-        #heart-checkbox:checked ~ .heart .love-message {
-            opacity: 1;
-        }
-
-        /* Animación de latido */
         @keyframes beat {
             0%, 100% {
                 transform: rotate(-45deg) scale(1);
@@ -126,17 +85,18 @@
 </head>
 <body>
     <div class="heart-container">
-        <!-- Checkbox invisible para simular el clic -->
-        <input type="checkbox" id="heart-checkbox">
-
-        <!-- Flecha que atraviesa el corazón -->
-        <div class="arrow"></div>
-
-        <!-- Corazón -->
-        <label for="heart-checkbox" class="heart">
-            <div class="message press-me">Presióname</div>
-            <div class="message love-message">Te quiero lamber tu cola</div>
-        </label>
+        <div class="arrow">↓</div>
+        <div class="heart" onclick="showMessage()">
+            <div class="message" id="pressMe">Presióname</div>
+            <div class="message hidden" id="loveMessage">Te quiero lamber tu cola mi reyna te amo mucho aver foto bien sexosa</div>
+        </div>
     </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById('pressMe').classList.add('hidden');
+            document.getElementById('loveMessage').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
